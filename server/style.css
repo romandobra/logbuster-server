@@ -1,18 +1,16 @@
 .ok{color: rgb(118, 177, 118);}
 
 .warn,.warn_custom{
-    background-color: rgb(137, 137, 54);
+    background-color: rgb(104, 104, 26);
     color: rgb(255, 255, 255);
 }
 
 .error{
-    background-color: rgb(115, 34, 34);
+    background-color: rgb(53, 34, 115);
     color: white;}
 
 .extra{
     font-style: italic;
 }
-
-td{padding: 6px;}
 
 body{max-width: 100%;}

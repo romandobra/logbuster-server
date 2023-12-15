@@ -17,14 +17,12 @@ $cols[^all_cols[$machines]]
     <td>$col</td>
     ^machines.foreach[;m]{
         $s[^m.log.select[;v]($v.name eq $col)]
-        <td>
         ^if($s){
             $ss[^s.at[first;value]]
-            <div class="$ss.result" title="$ss.log">
-                ^if(^ss.log.trim[] ne ""){^ss.log.left(16)}{&nbsp}
+            <td class="$ss.result" title="$ss.log">
+                ^if(^ss.log.trim[] ne ""){^ss.log.left(13)}{&nbsp}
                 ^if(^ss.extra.trim[] ne ""){<span class="extra">$ss.extra</span>}
-            </div>
-        }{-}
+        }{<td>&nbsp}
         </td>
         $s[^hash::create[]]
     }
