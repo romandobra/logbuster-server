@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><title>logbuster</title></head><body>
+
+#^soh[$request:argv]<hr>
+
+^if($form:auth ne $AUTH){
+    <form><input name=auth autofocus></form>
+}{
+    ^use[index.p;$.replace(true)]
+    ^main[]
+}
+
+</body></html>
