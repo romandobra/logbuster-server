@@ -20,8 +20,8 @@ $cols[^all_cols[$machines]]
         <td>
         ^if($s){
             $ss[^s.at[first;value]]
-            <div class="$ss.result">
-                ^if(^ss.log.trim[] ne ""){^ss.log.left(20)}{&nbsp}
+            <div class="$ss.result" title="$ss.log">
+                ^if(^ss.log.trim[] ne ""){^ss.log.left(16)}{&nbsp}
                 ^if(^ss.extra.trim[] ne ""){<span class="extra">$ss.extra</span>}
             </div>
         }{-}
