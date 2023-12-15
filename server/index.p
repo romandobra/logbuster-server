@@ -1,52 +1,52 @@
 @main[]
-$data[^file:list[$DATA_PATH]]<hr>
-$machines[^file:list[$MACHINES_PATH]]<hr>
-$scripts[^file:list[$SCRIPTS_PATH]]<hr>
+$data[^file:list[$DATA_PATH]]
+$scripts[^file:list[$SCRIPTS_PATH]]
+
+^use[logs.p]
+^use[machines.p]
+$machines[^machines_list[]]
+
+$cols[^all_cols[$machines]]
+#^soh[$cols]
+<table border=1>
+<tr><td></td>^machines.foreach[;m]{<td>$m.name</td>}</tr>
+
+^cols.foreach[col;]{
+
+    <tr>
+    <td>$col</td>
+    ^machines.foreach[;m]{
+        $s[^m.log.select[;v]($v.name eq $col)]
+        <td>
+        ^if($s){
+            $ss[^s.at[first;value]]
+            <div class="$ss.result">
+                ^if(^ss.log.trim[] ne ""){^ss.log.left(20)}{&nbsp}
+                ^if(^ss.extra.trim[] ne ""){<span class="extra">$ss.extra</span>}
+            </div>
+        }{-}
+        </td>
+        $s[^hash::create[]]
+    }
+    </tr>
+}
+</table>
+
+#^soh[$machines]<hr>
+
+
+@all_cols[m][v]
+$result[^hash::create[]]
+^m.foreach[k;v]{
+    ^v.log.foreach[;vv]{
+        $result.[$vv.name](1)
+    }
+}
+
+@del[]
 
 # <table>
 # ^machines.foreach[;name]{
 #     $machines.name
 # }
 # </table>
-
-^soh[^last_log[brix]]
-
-@last_log[m][f;n]
-$result[^hash::create[]]
-$f[^file:list[$DATA_PATH/$m/ssh]]
-^f.sort{$f.name}[desc]
-$n[^f.name.left(10)]
-
-$f[^file::load[text;$DATA_PATH/$m/ssh/${n}.log]]
-$f[^#0a$f.text]
-$f[^f.split[^#0a${n}-logbuster]]
-$result.[$n][
-    ^f.menu{
-        ^if(^f.offset[] == 0){^continue[]}
-        $.[^f.offset[]][^parse_piece[$f.piece]]
-    }
-]
-
-@parse_piece[s][line]
-$s[^s.split[^#0a]]
-$line[^s.piece.split[ ]]
-$result[
-#    $.line[$s.piece]
-    $.type[^line.offset[set](1)$line.piece]
-
-    ^if(^line.count[]>2){
-        ^line.offset[set](2)
-        $.name[$line.piece] }
-
-    ^if(^line.count[]>3){
-        ^line.offset[set](3)
-        $.result[$line.piece] }
-
-    ^if(^line.count[]>4){
-        ^line.offset[set](4)
-        $.extra[$line.piece] }
-
-    ^if(^s.count[]>1){
-        $.log[^s.menu{^if(^s.line[]>1){^s.piece.trim[]}}[^#0a]] }
-]
-
