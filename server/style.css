@@ -1,12 +1,12 @@
 .ok{color: rgb(118, 177, 118);}
 
 .warn,.warn_custom{
-    background-color: rgb(104, 104, 26);
+    background-color: rgb(104, 104, 26)  !important;
     color: rgb(255, 255, 255);
 }
 
 .error{
-    background-color: rgb(53, 34, 115);
+    background-color: rgb(53, 34, 115)  !important;
     color: white;}
 
 .extra{
@@ -14,3 +14,28 @@
 }
 
 body{max-width: 100%;}
+
+tr,td,th,table{background:none !important;}
+
+table {
+    overflow: hidden;
+  }
+  
+  tr:hover {
+    background-color: #530652 !important;
+  }
+  
+  td, th {
+    position: relative;
+  }
+  td:hover::after,
+  th:hover::after {
+    content: "";
+    position: absolute;
+    background-color: #530652 !important;
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+  }
