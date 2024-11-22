@@ -5,9 +5,12 @@ set -e
 export LB_USE_SERVER=true # pkill parser3
 export LB_SERVER_PORT=4500
 export LB_SERVER_SHOW_ERRORS=true
+export LB_DATADIR=/root/logbuster/_data
+export LB_MACHINESDIR=/root/logbuster/_machines
+export LB_SSHSCRIPTSDIR=$LB_DATADIR/_ssh_scripts
 
 cd ../logbuster
-source .settings
+source .settings || true
 cd ../logbuster-server
 
 
