@@ -4,7 +4,6 @@ $ROOT[^request:document-root.match[[\w-]+][g][..]]
 $DATA_PATH[$ROOT/$request:argv.2]
 $MACHINES_PATH[$ROOT/$request:argv.3]
 $SCRIPTS_PATH[$ROOT/$request:argv.4]
-$AUTH[$request:argv.5]
 
 
 @is_developer[]

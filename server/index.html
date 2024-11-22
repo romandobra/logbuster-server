@@ -5,11 +5,7 @@
 
 #^soh[$request:argv]<hr>
 
-^if($form:auth ne $AUTH){
-    <form><input name=auth autofocus></form>
-}{
-    ^use[index.p;$.replace(true)]
-    ^main[]
-}
+^use[index.p;$.replace(true)]
+^main[]
 
 </body></html>
